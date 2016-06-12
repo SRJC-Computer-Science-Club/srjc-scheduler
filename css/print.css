@@ -1,0 +1,79 @@
+/* Coded by Benajamin Hough
+** 2014
+*/
+
+@CHARSET "ISO-8859-1";
+
+
+#second,header,.arrow,.closeButton,#footer,#disclaimer,#semester{
+	display:none;
+}
+
+#printH{
+	display: table;
+	text-align:center;
+	margin: 0;
+}
+
+#printH h1{
+	font-size: 1.7em;
+	line-height: 15px;
+}
+
+#tableInfo{
+	display: table;
+}
+
+
+/*#container2,#container,.courseGroup,th{
+	background: transparent !important;
+}*/
+
+
+*:not(.buttonInside):not(.drawClass){
+	background: transparent !important;
+}
+
+html,body,#container2{
+	background: white;
+	border-width: 0;
+	box-shadow:none;
+}
+
+
+#container{
+	border-width: 2px;
+	margin:5px 0 0 0;
+}
+
+.drawClass div{
+	visibility:visible;
+	white-space: nowrap;
+	overflow: hidden;
+
+
+}
+
+.drawClass div>p{
+	visibility:visible;
+
+}
+/*
+.drawClass {
+	border: 20px solid red inset;
+}
+
+/*#imgCanvas{
+
+	display: block;
+}
+
+
+#imgCanvas{
+
+	display: block;
+	position: absolute;
+	top: 2px !important;
+}
+*/
+

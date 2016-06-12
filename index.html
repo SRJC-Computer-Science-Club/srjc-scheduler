@@ -1,0 +1,462 @@
+<!-- Coded by Benjamin Hough, 2014-->
+<!DOCTYPE html>
+<html id="html">
+
+<head>
+    <meta name=viewport content="height=device-height, width=device-width, initial-scale=1">
+    <meta charset="ISO-8859-1">
+    <meta name="description" content="A tool for easily laying out your schedule at the Santa Rosa Junior College. Features automatic scheduling and class interference detection. This is NOT an official SRJC website." />
+    <meta property="og:url" content="http://srjcscheduler.com/" />
+    <meta property="og:title" content="SRJC Class Scheduler" />
+    <meta property="og:image" content="http://srjcscheduler.com/img/banner.png" />
+    <meta property="og:description" content="A tool for easily laying out your schedule at the SRJC. Features automatic scheduling and class interference detection." />
+    <title>SRJC Class Scheduler</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#e35750">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery.mobile.custom.js"></script>
+    <script src="js/jstorage.js"></script>
+    <script src="js/json.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div id="container2">
+        <img src="img/semester.png" style="display: none; position: absolute;" id="semester">
+        <header id="header"><img src="img/title.png" /></header>
+        <header id="printH">
+            <h1>SRJCscheduler.com</h1></header>
+        <div id="container">
+            <div id="first">
+                <table id="timeSheet">
+                    <tr>
+                        <th id="firstColumn"></th>
+                        <th>
+                            <div>Monday</div>
+                        </th>
+                        <th>
+                            <div>Tuesday</div>
+                        </th>
+                        <th>
+                            <div>Wednesday</div>
+                        </th>
+                        <th>
+                            <div>Thursday</div>
+                        </th>
+                        <th>
+                            <div>Friday</div>
+                        </th>
+                        <th>
+                            <div>Saturday</div>
+                        </th>
+                        <th>
+                            <div>Sunday</div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>6AM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>7AM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>8AM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>9AM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>10AM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>11AM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>12PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>1PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>4PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>5PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>6PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>7PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>8PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>9PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>10PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>11PM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div id="divCanvas"></div>
+            </div>
+            <div id="second">
+                <div id="topButton" class="buttonGroup">
+                    <div class="buttonCont">
+                        <div id="textarea">
+                            <input id="textbox" placeholder="Enter Course Name or Data Here" spellcheck="false">
+                        </div>
+                    </div>
+                    <div class="buttonCont">
+                        <div id="B_addCourse" class="button">
+                            <div class="buttonInside disabled"><span id="loader">Add Course</span>
+                                <div id="fountainG" style="display: none;">
+                                    <div id="fountainG_1" class="fountainG">
+                                    </div>
+                                    <div id="fountainG_2" class="fountainG">
+                                    </div>
+                                    <div id="fountainG_3" class="fountainG">
+                                    </div>
+                                    <div id="fountainG_4" class="fountainG">
+                                    </div>
+                                    <div id="fountainG_5" class="fountainG">
+                                    </div>
+                                    <div id="fountainG_6" class="fountainG">
+                                    </div>
+                                    <div id="fountainG_7" class="fountainG">
+                                    </div>
+                                    <div id="fountainG_8" class="fountainG">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href='html/howto.html' onclick="ga('send', 'event', 'Button', 'Clicked','Help');" target="_blank">
+                        <div class="buttonCont">
+                            <div id="B_help" class="button">
+                                <div class="buttonInside">Help</div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="buttonCont">
+                        <div id="B_donate" class="button" style="
+    width: 100%;
+    text-decoration: none;
+">
+                            <a href="#" onclick="window.open('https://www.paypal.com/cgi-bin/webscr/?cmd=_s-xclick&amp;hosted_button_id=QPMKPZLKTW7B2', 'newwindow', 'width=800, height=700, top=300, left=100');
+                                        ga('send', 'event', 'Button', 'Clicked','Paypal');
+                                        return false;" style="
+    text-decoration: none;
+">
+                                <div class="buttonInside">
+                                    <span class="icon-paypal"><span>&nbsp;Donate</span></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="infoPane">
+                </div>
+                <div id="totals">Units: 0.00&nbsp; &nbsp;Hours: 0.00
+                </div>
+                <div id="lowButton" class="buttonGroup">
+                    <div class="buttonCont">
+                        <div id="B_classCycleLeft" class="button">
+                            <div class="buttonInside">&#60</div>
+                        </div>
+                        <div id="B_classCycle">
+                            <div class="buttonInside">Cycle Classes</div>
+                        </div>
+                        <div id="B_classCycleRight" class="button">
+                            <div class="buttonInside">&#62</div>
+                        </div>
+                    </div>
+                    <div class="buttonCont" style="display:none">
+                        <div id="B_save" class="button">
+                            <div class="buttonInside">Save</div>
+                        </div>
+                        <div id="B_load" class="button">
+                            <div class="buttonInside">Load</div>
+                        </div>
+                    </div>
+                    <div class="buttonCont">
+                        <div id="B_print" class="button">
+                            <div class="buttonInside">Print</div>
+                        </div>
+                    </div>
+                    <div class="buttonCont">
+                        <div id="B_restart" class="button">
+                            <div class="buttonInside">Restart</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="third">
+                <!--<div class="courseGroup">
+                        <span>class Name</span>
+                        <div class="buttonCont">
+                            <div class="button"><div>Add Course</div></div>
+                        </div>
+                        <div class="buttonCont">
+                            <div class="button"><div>Add Course</div></div>
+                        </div>
+                        <div class="buttonCont">
+                            <div class="button"><div>Add Course</div></div>
+                        </div>
+                    </div>-->
+            </div>
+        </div>
+        <div id="footer">
+            <span id="author">Created by: <a href="html/submit.html" target="blank" style="cursor:pointer">Benjamin Hough</a></span>
+            <div id="share">
+                <div class="buttonCont">
+                    <div id="B_fShare" class="button">
+                        <a href="#" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.srjcscheduler.com', 'newwindow', 'width=450, height=300, top=300, left=100');
+                                        ga('send', 'event', 'Button', 'Clicked','Facebook');
+                                        return false;">
+                            <div class="buttonInside">
+                                <span class="icon-facebook"><span>&nbsp;Share</span></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="B_gShare">
+                        <a href="#" onclick="window.open('https://plus.google.com/share?url=http%3A%2F%2Fwww.srjcscheduler.com', 'newwindow', 'width=450, height=300, top=300, left=100');
+                                        ga('send', 'event', 'Button', 'Clicked','Google Plus');
+                                        return false;">
+                            <div class="buttonInside">
+                                <span class="icon-google"><span>&nbsp;Share</span></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="B_tShare" class="button">
+                        <a href="#" onclick="window.open('https://twitter.com/intent/tweet?&amp;text=SRJC%20Class%20Scheduler%20-%20Takes%20the%20hassle%20out%20scheduling%20classes&amp;url=http%3A%2F%2Fsrjcscheduler.com', 'newwindow', 'width=450, height=300, top=300, left=100');
+                                        ga('send', 'event', 'Button', 'Clicked','Twitter');
+                                        return false;">
+                            <div class="buttonInside">
+                                <span class="icon-twitter"><span>&nbsp;Tweet</span></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="B_donate" class="button">
+                        <a href="#" onclick="window.open('https://www.paypal.com/cgi-bin/webscr/?cmd=_s-xclick&amp;hosted_button_id=QPMKPZLKTW7B2', 'newwindow', 'width=800, height=700, top=300, left=100');
+                                        ga('send', 'event', 'Button', 'Clicked','Paypal');
+                                        return false;">
+                            <div class="buttonInside">
+                                <span class="icon-paypal"><span>&nbsp;Donate</span></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table id="tableInfo">
+        </table>
+    </div>
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-53825320-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+    <script src="js/Main-1.1.0.js"></script>
+</body>
+<noscript>
+    <div id="noscript"><img src="img/error.gif" style="
+    float: right;
+    display: inline;
+
+    margin-right: 20px;
+">
+        <div style="
+    /* float: left; */
+    width: auto;
+    display: inline;
+"><img src="img/error.gif" style="
+    float: left;
+    margin-left: 20px;
+">
+            <p style="
+    margin: 0;
+">Javascript must be enabled to use this site</p>
+            <br><span>please enable now or update your browser</span></div>
+    </div>
+    <div id="blank"></div>
+</noscript>
+
+</html>
