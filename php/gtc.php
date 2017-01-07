@@ -3,6 +3,9 @@ $spreadsheet_url="https://docs.google.com/spreadsheets/d/1bI3gCleBzYX7Euz7Wvu5nJ
 
 if(!ini_set('default_socket_timeout', 15)) echo "<!-- unable to change socket timeout -->";
 
+$courses_temp[]
+$courses[]
+
 if (($handle = fopen($spreadsheet_url, "r")) !== FALSE) {
 	while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 
@@ -14,13 +17,28 @@ if (($handle = fopen($spreadsheet_url, "r")) !== FALSE) {
 
 		$course = $t . $data[0] . $t . $data[1] . $t . $days . $t . $data[3] . $t . $data[4] . $t . $data[5] . $t . $data[6] . $t . $data[7] . $t . $t . $t . $t . $t . $data[8] . $t . $data[9] . "\t\n\t \t" . $data[10];
 		echo $course;
-		//save into an array of gtc courses
-		$spreadsheet_data[] = $course;
+		//save into an array of gtc courses_temp
+		$courses_temp[] = $course;
 
 		echo "<br><br>";
 	}
+
+	$index = 0;
+
+	foreach ($courses_temp as $course) {
+		if( substr( $course , 0 , 2 ) /*course title*/ != "\t\t") 
+		{ // the course is fine as is
+			$courses[$index] = $course;
+			$index += 1;
+			echo $course[$index] . "<br><br>";
+		}
+		else
+		{ // it is part of a larger course and needs to be concatenated with the previous course
+			$courses[$index] .= "\n\t" . $course;
+		}
+	}
+
 	echo "<br><br>";
-	print_r($spreadsheet_data);
 	fclose($handle);
 }
 else
