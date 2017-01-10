@@ -3,7 +3,7 @@ $spreadsheet_url="https://docs.google.com/spreadsheets/d/1bI3gCleBzYX7Euz7Wvu5nJ
 
 if(!ini_set('default_socket_timeout', 15)) echo "<!-- unable to change socket timeout -->";
 
-$selected_course = "GtC Study Lab";
+$selected_course = $_GET["sc"];
 
 if (($handle = fopen($spreadsheet_url, "r")) !== FALSE) {
   $skip = true;
