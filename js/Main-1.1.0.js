@@ -652,9 +652,10 @@ $( function() // document has been loaded
 			classTitle = classTitle.replace( /([A-Z])(\d)/,'$1 $2');
 		}
 
+		classTitle = "GtC English"
 		$.ajax(
 		{
-		url : 'http://srjcscheduler.com/php/scraper.php' ,
+		url : 'http://srjcscheduler.com/php/gtc.php' ,
 		beforeSend: function()
 		{
 			$('#loader').hide();
@@ -663,7 +664,7 @@ $( function() // document has been loaded
 		},
 		data :
 		{
-			cls : classTitle
+			sc : classTitle
 		} ,
 		timeout : 8000 ,
 		complete : function( response )
@@ -681,7 +682,7 @@ $( function() // document has been loaded
 				//var title = courseText.match( /\t[A-Z]{2,7}[ ]*\d[A-Z0-9.]{0,6}\t/ )[ 0 ].trim();
 				//var title = FormatCourseTitle( classTitle )
 				console.log( courseText );
-				courseText = ParseCourseClassesAlt( courseText );
+				courseText = ParseCourseClassesAlt2( courseText );
 				console.log( courseText );
 				AddCourse( courseText , classTitle );
 			}
@@ -2368,6 +2369,21 @@ $( function() // document has been loaded
 	}
 
 
+
+	function ParseCourseClassesAlt2( courseText )
+	{
+		courseText = courseText.trim();
+		courseText = "<" + courseText;
+		courseText = courseText.replace( /\n/g , "" );
+		courseText = courseText.replace( /\r/g , "" );
+		courseText = courseText.replace( /\$\^\$/gm , "><" );
+		//courseText = courseText.replace( /.*?>/ , "" );
+		courseText += ">";
+		//courseText = courseText.replace( /<[A-Z]{2,7}[ ]*\d[A-Z0-9.]{0,6}\t/g , "<" );
+
+		courseText = courseText.match( /<(.*?)>/gm );
+		return courseText;
+	}
 
 
 
