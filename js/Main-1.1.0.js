@@ -970,7 +970,7 @@ $( function() // document has been loaded
 
 				// sect number //////////////////////////////////////////////////////////////////////////////
 
-				classTemp.sect = courseText[ i ].match( /\d{4}/ )[ 0 ]; // pull sect number
+				classTemp.sect =  courseText[ i ].match( /<?(.*?)(>|\t)/ )[ 1 ]; // pull until next tab
 
 				courseText[ i ] = courseText[ i ].replace( /.*?(>|\t)/ , "" ); // remove sect number
 
@@ -1113,11 +1113,11 @@ $( function() // document has been loaded
 
 						min = Number( stringTemp.match( /\d\d/ )[ 0 ] ); // parses start minutes
 
-						stringTemp = stringTemp.replace( /.*?\s/ , "" ); // removes start minutes
+						stringTemp = stringTemp.replace( /\d\d\s?/ , "" ); // removes start minutes
 
 						ampm = stringTemp.match( /\s*?[amp]{2}/ )[ 0 ]; // parses start am or pm
 
-						stringTemp = stringTemp.replace( /\s\-\s/ , "" ); // removes start am or pm
+						stringTemp = stringTemp.replace( /\s?\-\s?/ , "" ); // removes start am or pm
 
 						if ( ampm.toLowerCase() == "pm" ) // if pm
 						{
@@ -1145,7 +1145,7 @@ $( function() // document has been loaded
 
 						min = Number( stringTemp.match( /\d\d/ )[ 0 ] );
 
-						stringTemp = stringTemp.replace( /.*?\s/ , "" );
+						stringTemp = stringTemp.replace( /\d\d\s?/ , "" );
 
 						ampm = stringTemp.match( /\s*?[amp]{2}/ )[ 0 ];
 
@@ -1403,7 +1403,7 @@ $( function() // document has been loaded
 
 					// final exam //////////////////////////////////////////////////////////////////////////////
 
-					classTemp.finalExam = stringTemp.match( /\d\d?\/\d\d?\/\d{4}/ )[ 0 ]; // parse final exam and assing to class
+					classTemp.finalExam = stringTemp; // parse final exam and assing to class
 				} catch ( err ) // if final exam missing
 				{
 					console.log( "error adding final exam date" );
