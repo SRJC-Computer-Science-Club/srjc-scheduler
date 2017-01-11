@@ -3,7 +3,7 @@ $spreadsheet_url="https://docs.google.com/spreadsheets/d/1bI3gCleBzYX7Euz7Wvu5nJ
 
 if(!ini_set('default_socket_timeout', 15)) echo "<!-- unable to change socket timeout -->";
 
-$selected_course = $_GET["sc"];
+$selected_course = $_GET["cls"];
 
 if (($handle = fopen($spreadsheet_url, "r")) !== FALSE) {
   $skip = true;
@@ -26,7 +26,7 @@ if (($handle = fopen($spreadsheet_url, "r")) !== FALSE) {
 
 		$days = preg_replace("/\//", "", $data[2]);
 
-		$course = array( $data[0] , $t . $data[1] . $t . $days . $t . $data[3] . $t . $data[4] . $t . $data[5] . $t . $data[6] . $t . $data[7] . $t . $t . $t . $t . $t . $data[8] . $t . $data[9] . "\t\n\t \t" . $data[10] );
+		$course = array( $data[0] , $data[1] . $t . $days . $t . $data[3] . $t . $data[4] . $t . $data[5] . $t . $data[6] . $t . $data[7] . $t . $t . $t . $t . $t . $data[8] . $t . $data[9] . "\t\n\t \t" . $data[10] );
 
 		//save into an array of gtc courses_temp
 		$courses_temp[] = $course;
