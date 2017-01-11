@@ -658,17 +658,18 @@ $( function() // document has been loaded
 		
 		if (courseType == GTC )
 		{
-			url_string = 'http://srjcscheduler.com/php/gtc.php'
+			url_string = 'http://srjcscheduler.com/php/gtc.php';
 		}
-
-		classTitle = classTitle.toUpperCase();
-
-		if ( classTitle.length < 10 )
+		else
 		{
-			classTitle = classTitle.replace( /([A-Z])(\d)/,'$1 $2');
-		}
+			classTitle = classTitle.toUpperCase();
 
-		classTitle = "GtC English"
+			if ( classTitle.length < 10 )
+			{
+				classTitle = classTitle.replace( /([A-Z])(\d)/,'$1 $2');
+			}
+		}
+		
 		$.ajax(
 		{
 		url : url_string ,
