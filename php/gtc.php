@@ -26,7 +26,7 @@ if (($handle = fopen($spreadsheet_url, "r")) !== FALSE) {
 
 		$days = preg_replace("/\//", "", $data[2]);
 
-		$course = array( $data[0] , $t . $data[1] . $t . $days . $t . $data[3] . $t . $data[4] . $t . $data[5] . $t . $data[6] . $t . $data[7] . $t . $t . $t . $t . $t . $data[8] . $t . $data[9] . "\t\n\t \t" . $data[10] );
+		$course = array( $data[0] , $data[1] . $t . $days . $t . $data[3] . $t . $data[4] . $t . $data[5] . $t . $data[6] . $t . $data[7] . $t . $t . $t . $t . $t . $data[8] . $t . $data[9] . "\t\n\t \t" . $data[10] );
 
 		//save into an array of gtc courses_temp
 		$courses_temp[] = $course;
