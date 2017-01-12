@@ -1786,10 +1786,13 @@ $( function() // document has been loaded
 
 		//console.log( obj.sect + " - " + obj.sessions[ 0 ].instructor );
 
-		for ( var j = 0 ; j < obj.parent.data( "course" ).classes.length ; j++ )
+		if( !obj.parent.data( "course" ).courseTitle.match("GtC") )
 		{
-			obj.parent.data( "course" ).classes[ j ].display = false;
-			obj.parent.data( "course" ).classes[ j ].RefreshColor();
+			for ( var j = 0 ; j < obj.parent.data( "course" ).classes.length ; j++ )
+			{
+				obj.parent.data( "course" ).classes[ j ].display = false;
+				obj.parent.data( "course" ).classes[ j ].RefreshColor();
+			}
 		}
 
 		obj.display = tempDisplay;
