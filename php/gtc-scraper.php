@@ -1,5 +1,5 @@
 <?php
-$spreadsheet_url="https://docs.google.com/spreadsheets/d/1bI3gCleBzYX7Euz7Wvu5nJ_gNlVGjWKuuqKc2D7Rg3Q/pub?gid=234805686&amp;single=true&amp;output=csv";
+$spreadsheet_url="https://docs.google.com/spreadsheets/d/1bI3gCleBzYX7Euz7Wvu5nJ_gNlVGjWKuuqKc2D7Rg3Q/pub?gid=234805686&single=true&output=csv";
 
 if(!ini_set('default_socket_timeout', 15)) echo "<!-- unable to change socket timeout -->";
 
