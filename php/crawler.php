@@ -16,7 +16,7 @@ mysql_select_db('SRJC');
 
 
 
-$url = 'https://portal.santarosa.edu/SRWeb/SR_ScheduleOfClasses.aspx?Mode=text&TermID=20177';
+$url = 'https://portal.santarosa.edu/SRWeb/SR_ScheduleOfClasses.aspx?Mode=text&TermID=20183';
 
 
 $ch = curl_init();
@@ -78,7 +78,7 @@ for ($i = 0 ; $i < count($links) ; $i++ )
         $li = mysql_real_escape_string('https://portal.santarosa.edu/SRWeb/' . $link->getAttribute('href'));
         echo $link->textContent;
         $na = mysql_real_escape_string($link->textContent);
-        $sql = "REPLACE INTO F17 ".
+        $sql = "REPLACE INTO S18 ".
                 "VALUES('$na','$li','') ";
 
 
