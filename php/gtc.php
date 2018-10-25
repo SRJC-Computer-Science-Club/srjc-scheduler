@@ -24,15 +24,27 @@ if (($handle = fopen($spreadsheet_url, "r")) !== FALSE) {
 
         //format >>section, days, time, instructor, campus, room, units, status, total seats, used seats, remaining seats, date begin ends, date final
 
-		$days = preg_replace("/\//", "", $data[2]);
+		$days = preg_replace("/\n/", "&", preg_replace("/\//", "", $data[2]));
+    $times = preg_replace("/\n/", "&", $data[3]);
+    $instructors = preg_replace("/\n/", "&", $data[4]);
+    $locations = preg_replace("/\n/", "&", $data[5]);
+    $classrooms = preg_replace("/\n/", "&", $data[6]);
+    $dates = preg_replace("/\n/", "&", $data[8]);
 
-		$course = array( $data[0] , $data[1] . $t . $days . $t . $data[3] . $t . $data[4] . $t . $data[5] . $t . $data[6] . $t . $data[7] . $t . $t . $t . $t . $t . $data[8] . $t . $data[9] . "\t\n\t \t" . $data[10] );
+		$course = array(
+      $data[0],
+      $data[1] . $t . $days . $t . $times . $t . $instructors . $t . $locations . $t . $classrooms . $t . $data[7] . $t . $t . $t . $t . $t . $dates . $t . $data[9] . "\t\n\t \t" . $data[10]
+    );
 
 		//save into an array of gtc courses_temp
 		$courses_temp[] = $course;
 
 	}
 
+  //$courses_temp now has all entries in the csv as ([0]: course title, [1]: course info as a large string)
+
+
+  // add or contactanate classes with multiple sections to the courses array
 	foreach ($courses_temp as $course) {
 		if( $course[0] /*course title*/ != "")
 		{ // the course is fine as is
