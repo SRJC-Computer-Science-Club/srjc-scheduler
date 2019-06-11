@@ -12,7 +12,7 @@ mysql_select_db('SRJC');
 $search = mysql_real_escape_string($_GET["cls"]);
 //echo $search;
 
-$result = mysql_query("SELECT DISTINCT  `URL` FROM  `F18` WHERE Courses =  '$search'");
+$result = mysql_query("SELECT DISTINCT  `URL` FROM  `S19` WHERE Courses =  '$search'");
 
 if (!$result ) {
 	echo "A Server Error Occured";
@@ -96,7 +96,7 @@ echo $class;
 
 $class = mysql_real_escape_string( $class );
 
-$sql = "REPLACE INTO S18 ".
+$sql = "REPLACE INTO S19 ".
 		"VALUES('$search','$url','$class') ";
 
 mysql_query( $sql , $con );
